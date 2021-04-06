@@ -1,0 +1,36 @@
+<!-- <ngb-carousel>
+      <ng-template ngbSlide>
+        <div class="picsum-img-wrapper">
+          <img src="assets/images/food5.jpg" alt="Angular Carousel 1">
+        </div>
+        
+      </ng-template>
+      <ng-template ngbSlide>
+        <div class="picsum-img-wrapper">
+          <img src="assets/images/food.jpeg" alt="Angular Carousel 2">
+        </div>
+      </ng-template>
+      <ng-template ngbSlide>
+          <div class="picsum-img-wrapper">
+            <img src="assets/images/food3.jpeg" alt="Angular Carousel 2">
+          </div>
+        </ng-template>
+    </ngb-carousel> -->
+    <div class="table-responsive">
+        <h3 style="text-align: center;">{{'RESTAURANTLIST.ACTIVE' | translate}}</h3>
+        <table class="table table-striped">
+          <thead>
+            <th>Restaurant Name</th>
+            <th>Action</th>
+          </thead>
+          <tbody *ngFor="let r of restaurant">
+      
+            <tr *ngIf=" r.status==='active'">
+              <td class="col-2"><b>{{r.restaurantName}}</b></td>
+              <td><a [routerLink]="['/restaurants/restaurantDetail',r.restaurantName]">
+                  <button class="btn btn-info">Details</button></a></td>
+            </tr>
+      
+          </tbody>
+        </table>
+      </div>

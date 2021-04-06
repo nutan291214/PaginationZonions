@@ -1,0 +1,127 @@
+<mat-card>
+    <button mat-button class="close-icon" (click)="close()" style="float: right;">
+        <mat-icon>close</mat-icon>
+    </button>
+    <mat-card-title>
+        Create Restaurant
+    </mat-card-title>
+   
+    <mat-card-content>
+        <form [formGroup]="restaurantForm" (ngSubmit)="saveRestaurant(restaurantForm.value)">
+            <table>
+
+                <tr>
+                    <td>
+                        <mat-form-field class="demo-full-width">
+                            <input matInput placeholder="Restaurant name" formControlName="restaurantName"
+                                name="restaurantName">
+                        </mat-form-field>
+                        <span style="color: red;">*</span>
+                        <div *ngFor="let validation of restaurantName_validation_message.restaurantName">
+                            <div *ngIf="restaurantForm.get('restaurantName').hasError(validation.type)
+                             && (restaurantForm.get('restaurantName').dirty || restaurantForm.get('restaurantName').touched)"
+                                style="color: red;">{{validation.message}}</div>
+                        </div>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <mat-form-field class="demo-full-width">
+                            <textarea matInput placeholder="Address" matTextareaAutosize matAutosizeMinRows="2"
+                                matAutosizeMaxRows="5" formControlName="address" name="address"></textarea>
+
+                        </mat-form-field>
+                        <span style="color: red;">*</span>
+
+                        <div *ngFor="let validation of address_validation_message.address">
+                            <div *ngIf="restaurantForm.get('address').hasError(validation.type)
+                             && (restaurantForm.get('address').dirty || restaurantForm.get('address').touched)" 
+                             style="color: red;">
+                                {{validation.message}}</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <mat-form-field class="demo-full-width">
+                            <input matInput placeholder="Contact Number" class="form-control" formControlName="phone_no"
+                                name="phone_no">
+
+                        </mat-form-field>
+                        <span style="color: red;">*</span>
+                        <div *ngFor="let validation of phone_no_validation_message.phone_no">
+                            <div  *ngIf="restaurantForm.get('phone_no').hasError(validation.type)
+                             && (restaurantForm.get('phone_no').dirty || restaurantForm.get('phone_no').touched)"
+                             style="color: red;">{{validation.message}}</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <b><label>Open Time<span style="color: red;">*</span></label></b>
+                            <ngb-timepicker [formControlName]="'open_time'"></ngb-timepicker>
+                        </div>
+                        <div *ngFor="let validation of open_time_validation_message.open_time">
+                            <div  *ngIf="restaurantForm.get('open_time').hasError(validation.type)
+                             && (restaurantForm.get('open_time').dirty || restaurantForm.get('open_time').touched)"
+                             style="color: red;">{{validation.message}}</div>
+                        </div>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <b><label>Close Time<span style="color: red;">*</span></label></b>
+                            <ngb-timepicker [formControlName]="'close_time'"></ngb-timepicker>
+                        </div>
+                        <div *ngFor="let validation of close_time_validation_message.close_time">
+                            <div  *ngIf="restaurantForm.get('close_time').hasError(validation.type)
+                             && (restaurantForm.get('close_time').dirty || restaurantForm.get('close_time').touched)"
+                             style="color: red;">{{validation.message}}</div>
+                        </div>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td colspan="2">
+
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="content-center">
+                        <button mat-raised-button color="accent">Submit</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <br>
+        <form (ngSubmit)="uploadFile()">
+            <table>
+                <tr>
+                    <td>
+                        <input type="file" (change)="onFileChangeEvent($event)" multiple="false" name="select file"
+                            style="width: 210px;" accept=".png,.jpg,.jpeg,.jfif" />
+                    </td>
+                    <td>
+                        <span style="color: red;">*Image should be less than 1 MB</span>
+                    </td>
+                </tr>
+                <tr>
+                    <button type="submit" class="btn btn-primary" translate="">Upload</button>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field class="demo-full-width">
+                            <input matInput placeholder="Restaurant type" formControlName="restaurantType"
+                                name="restaurantType">
+                        </mat-form-field>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </mat-card-content>
+</mat-card>

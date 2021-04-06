@@ -1,0 +1,23 @@
+<div>
+  <h3 style="text-align: center;">Active Restaurants</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <!-- <th > Restaurant Name</th>
+        <th>Status</th>
+        <th>Actions</th> -->
+      </tr>
+    </thead>
+    <tbody *ngFor="let r of restaurants | async">
+      
+      <tr >
+        <td colspan="col-lg"><b>{{r.restaurantName}}</b></td>
+        <td><div *ngIf= "openCloseStatus==false">Restaurant Open</div>
+          <div *ngIf= "openCloseStatus">Restaurant Closed</div></td>
+        <td><a [routerLink]="['/restaurant/restaurantDetail',r.restaurantName]">
+          <button class="btn btn-info">{{ 'MENU.DETAILS' | translate }}</button></a></td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>

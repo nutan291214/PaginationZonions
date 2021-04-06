@@ -1,0 +1,224 @@
+   <kt-portlet>
+    <ng-container ktPortletTitle>
+        <h3 class="kt-portlet__head-title" style="text-align: center;">
+            <h2>Restaurant List</h2>
+        </h3>
+    </ng-container>
+    <br><br>
+    <div class="search-div">
+            
+        <button #content mat-raised-button  (click)="open()">
+          <mat-icon>add</mat-icon>Add
+              
+          </button>
+    
+        <!-- <mat-form-field class="search-form-field">
+            <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="on" (keyup)="applyFilter()">
+            <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field> -->
+    </div>
+    <br>
+    <div class="mat-elevation-z8">
+        <mat-table [dataSource]="dataSource" matSort>
+            <ng-container matColumnDef="restaurantName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Restaurant Name </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.restaurantName}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="address">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Address </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.address}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="phoneNo">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Contact Details </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.phone_no}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="openTime">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Open Time </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.open_time}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="closeTime">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Close Time </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.close_time}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="updatedTime">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Updated Time </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.updatedTime}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="status">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef style="text-align: center;">Actions</mat-header-cell>
+                <mat-cell *matCellDef="let element">
+
+                    <button mat-icon-button color="primary" matTooltip="Edit Restaurant" (click)="edit(element)">
+                        <mat-icon>create</mat-icon>
+                    </button>&nbsp;
+
+
+                    <button mat-icon-button color="primary" matTooltip="Delete Restaurant"
+                        (click)="deleteRestaurant(element)">
+                        <mat-icon>delete_forever</mat-icon>
+                    </button>&nbsp;
+
+                    <button mat-icon-button color="primary" matTooltip="Change Status"
+                        (click)="changeStatus(element.id)">
+                        <mat-icon>autorenew</mat-icon>
+                    </button>&nbsp;
+                </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[3,6,9]" [pageSize]="3" showFirstLastButtons></mat-paginator>
+    </div>
+</kt-portlet> 
+
+   <!-- <kt-portlet>
+    <ng-container ktPortletTitle>
+        <h3 class="kt-portlet__head-title" style="text-align: center;">
+            <h2>Restaurant List</h2>
+        </h3>
+    </ng-container>
+    <br><br>
+    <div class="search-div">
+            
+        <button #content mat-raised-button  (click)="open()">
+          <mat-icon>add</mat-icon>Add
+              
+          </button>
+    
+        <mat-form-field class="search-form-field">
+            <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="on" (keyup)="applyFilter()">
+            <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+    <div class="mat-elevation-z8">
+        <mat-table [dataSource]="listData" matSort>
+            <ng-container matColumnDef="restaurantName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Restaurant Name </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.restaurantName}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="address">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Address </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.address}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="phoneNo">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Contact Details </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.phone_no}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="openTime">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Open Time </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.open_time | convertFrom24To12Format }} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="closeTime">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Close Time </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.close_time | convertFrom24To12Format }} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="updatedTime">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Updated Time </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.updatedTime| slice:0:8}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="status">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef style="text-align: center;">Actions</mat-header-cell>
+                <mat-cell *matCellDef="let element">
+
+                    <button mat-icon-button color="primary" matTooltip="Edit Restaurant" (click)="edit(element)">
+                        <mat-icon>create</mat-icon>
+                    </button>&nbsp;
+                    <button mat-icon-button color="primary" matTooltip="Change Status"
+                        (click)="changeStatus(element.id)">
+                        <mat-icon>autorenew</mat-icon>
+                    </button>&nbsp;
+                </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[3,6,9]" [pageSize]="3" showFirstLastButtons></mat-paginator>
+    </div>
+</kt-portlet>  -->
+  
+
+  <!-- <div class="list row">
+    <div class="col-md-8">
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search by title"
+          [(ngModel)]="restaurantName"
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            (click)="retrieveTutorials()"
+          >
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+  
+   
+    <div class="col-md-6">
+      <h4>Restaurants List</h4>
+  
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="
+            let tutorial of restaurants | paginate : {
+                    itemsPerPage: pageSize,
+                    currentPage: page,
+                    totalItems: count
+                  };
+            
+          ">
+          {{ tutorial.restaurantName}}
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-12">
+        <pagination-controls
+          previousLabel="Prev"
+          nextLabel="Next"
+          responsive="true"
+          (pageChange)="handlePageChange($event)"
+        ></pagination-controls> -->
+
+        <!-- <pagination-controls 
+                      (pageChange)="handlePageChange($event)"
+                      maxSize="3"
+                      directionLinks="true"
+                      autoHide="true"
+                      responsive="true"
+                      previousLabel="Prev"
+                      nextLabel="Next"
+                      screenReaderPaginationLabel="Pagination"
+                      screenReaderPageLabel="page"
+                      screenReaderCurrentLabel="You're on page">
+</pagination-controls> -->
+      <!-- </div> -->
+    
+   
+  
+    <!-- <div class="mt-3">
+      Items per Page:
+      <select (change)="handlePageSizeChange($event)">
+        <option *ngFor="let size of pageSizes" [ngValue]="size">
+          {{ size }}
+        </option>
+      </select>
+    </div>
+  </div> -->

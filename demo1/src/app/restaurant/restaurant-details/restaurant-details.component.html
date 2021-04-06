@@ -1,0 +1,28 @@
+<div class="container">
+    <h3 style="text-align:center;">Restaurant Details</h3>
+    <br>
+        <table class="table striped">
+            <thead>
+                <th>Restaurant Name</th>
+                <th>Address</th>
+                <th>Contact Number</th>
+                <th>Open Time</th>
+                <th>Close Time</th>
+                <th>Menu</th>
+            </thead>
+            <tbody>
+                <tr>    
+                    <td>{{restaurantList.restaurantName}}</td>
+                        <td>{{restaurantList.address}}</td>
+                        <td>{{restaurantList.phone_no}}</td>
+                        <td>{{restaurantList.open_time }}</td>
+                        <td>{{restaurantList.close_time}}</td>
+                        <td><img [src]="url" class="img-circle" alt="menu" style="height: 300px; width: 300px;"/></td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="/"><button type="button" class="btn btn-primary active">Back</button></a>
+        <a href="/restaurants/booktable"><button class="btn btn-primary">Book Table</button></a>
+
+  </div>
+  

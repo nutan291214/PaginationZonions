@@ -1,0 +1,8 @@
+<div ngbDropdown placement="bottom-right" *ngIf="user$ | async as _user" class="kt-header__topbar-item kt-header__topbar-item--user">
+	<div ngbDropdownToggle class="kt-header__topbar-wrapper">
+		<span class="kt-header__topbar-icon" style="margin-top: 7px;"
+			[ngClass]="{ 'kt-header__topbar-icon--brand' : iconType === 'brand' }">
+			<mat-icon (click)="logout()" matTooltip="Signout">exit_to_app</mat-icon>
+	    </span>
+	</div>
+</div>

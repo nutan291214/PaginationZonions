@@ -1,0 +1,38 @@
+<div class="center">
+    <div class=" alert alert-success" *ngIf="comp==='RestaurantDeleteComponent' || comp==='UserDeleteComponent'">
+        <strong>Deleted Successfully!</strong>
+    </div>
+
+    <div>
+        <div class=" alert alert-success" *ngIf="comp==='RestaurantListComponent' ">
+            <div>
+                <strong>Restaurant status changed successfully!</strong>
+            </div>
+        </div>
+
+    </div>
+    <div>
+        <div class=" alert alert-success" *ngIf="comp==='UserDetailComponent' ">
+            <div>
+                <strong>User role changed successfully!</strong>
+            </div>
+        </div>
+
+    </div>
+    <div>
+        <div class=" alert alert-success" *ngIf="comp==='CreateRestaurantComponent' ">
+            <div>
+                <strong>Restaurant added successfully!</strong>
+            </div>
+        </div>
+
+    </div>
+    <div>
+        <div class=" alert alert-success" *ngIf="comp==='UpdateRestaurantComponent' ">
+            <div>
+                <strong>Restaurant updated successfully!</strong>
+            </div>
+        </div>
+
+    </div>
+</div>

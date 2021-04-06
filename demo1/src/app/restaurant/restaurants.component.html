@@ -1,0 +1,44 @@
+<mat-toolbar color="default">
+  <span style="display: flex;" >Zonions</span> <span class="example-spacer"></span>
+  <!-- <a href="restaurant/home" mat-button style="margin-left: 900px;"> {{ 'MENU.Active_Restaurant' | translate }}</a> -->
+
+  <a href="auth/login" mat-button style="margin-left: 1050px;">{{'AUTH.LOGIN.LOGINBUTTON' | translate}}</a>
+  <div class="kt-header__topbar">
+    <kt-language></kt-language>
+    </div>
+</mat-toolbar>
+<ngb-carousel>
+  <ng-template ngbSlide>
+    <div class="picsum-img-wrapper">
+      <img src="assets/media/images/img.jpeg" alt="Angular Carousel 1">
+    </div>
+    
+  </ng-template>
+  <ng-template ngbSlide>
+    <div class="picsum-img-wrapper">
+      <img src="assets/media/images/foodimg3.jpeg" alt="Angular Carousel 2">
+    </div>
+  </ng-template>
+  <ng-template ngbSlide>
+    <div class="picsum-img-wrapper">
+      <img src="assets/media/images/fries.jpeg" alt="Angular Carousel 2">
+    </div>
+  </ng-template>
+  <ng-template ngbSlide>
+    <div class="picsum-img-wrapper">
+      <img src="assets/media/images/food.jpeg" alt="Angular Carousel 2">
+    </div>
+  </ng-template>
+  <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img src="assets/media/images/food3.jpeg" alt="Angular Carousel 2">
+      </div>
+    </ng-template>
+</ngb-carousel>
+
+<!-- <marquee><a ></a></marquee> -->
+<kt-home></kt-home>
+<router-outlet></router-outlet>
+
+
+<kt-home-footer></kt-home-footer>
