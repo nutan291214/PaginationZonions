@@ -1,3 +1,8 @@
+export interface RestaurantResponse {
+    content: Restaurant[];
+    totalElements: number;
+}
+
 export class Restaurant {
     id = 0;
     restaurantName = '';

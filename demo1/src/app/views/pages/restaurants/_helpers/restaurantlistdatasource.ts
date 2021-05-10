@@ -4,7 +4,7 @@ import { Observable, BehaviorSubject, of } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
 import { RestaurantService } from '../_services/restaurant.service';
 // tslint:disable-next-line: max-line-length
-import { Restaurant , RestaurantResponse} from '../../../../../../../../../zonionsRestaurant/zonionsResto/demo1/src/app/views/pages/restaurants/_helpers/restaurant';
+import { Restaurant , RestaurantResponse} from '/home/njadhav/Documents/OldPaginationCode/PaginationZonions/demo1/src/app/views/pages/restaurants/_helpers/restaurant';
 
 export class RestaurantListDataSource implements DataSource<Restaurant> {
 
@@ -25,12 +25,12 @@ export class RestaurantListDataSource implements DataSource<Restaurant> {
         this.countSubject.complete();
     }
 
-    loadTodos(pageNumber = 0, pageSize = 10) {
+    loadTodos(sortField = 'address', sortDir = 'desc' , pageNumber = 0, pageSize = 3) {
         this.loadingSubject.next(true);
-        this.restaurantService.listRestaurant({ page: pageNumber, size: pageSize })
+        this.restaurantService.listRestaurant({ sortField, sortDir, page: pageNumber, size: pageSize })
             .pipe(
                 catchError(() => of([])),
-                finalize(() => this.loadingSubject.next(false))
+                finalize(() => this.loadingSubject.next(true))
             )
             // tslint:disable-next-line: deprecation
             .subscribe((result: RestaurantResponse ) => {

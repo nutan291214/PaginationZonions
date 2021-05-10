@@ -14,7 +14,7 @@ import { DialogComponent } from '../dialog/dialog.component';
 import { CreateRestaurantComponent } from '../create-restaurant/create-restaurant.component';
 import moment from 'moment';
 // tslint:disable-next-line: max-line-length
-import { RestaurantListDataSource } from '/home/njadhav/Documents/zonionsRestaurant/zonionsResto/demo1/src/app/views/pages/restaurants/_helpers/restaurantlistdatasource';
+import { RestaurantListDataSource } from '/home/njadhav/Documents/OldPaginationCode/PaginationZonions/demo1/src/app/views/pages/restaurants/_helpers/restaurantlistdatasource';
 
 
 @Component({
@@ -49,7 +49,7 @@ export class RestaurantListComponent implements OnInit {
     private activatedRoute: ActivatedRoute, private modalService: NgbModal) {
 
   }
-  listData: MatTableDataSource<any>;
+  listData: MatTableDataSource<Restaurant>;
   ngOnInit(): void {
     this.dataSource = new RestaurantListDataSource(this.restaurantService);
     this.dataSource.loadTodos();
@@ -75,10 +75,24 @@ export class RestaurantListComponent implements OnInit {
   }
 
   loadTodos() {
-    this.dataSource.loadTodos(this.paginator.pageIndex, this.paginator.pageSize);
+    console.log(this.sort.active);
+    console.log(this.sort.direction);
+    this.dataSource.loadTodos('address' , 'desc' , this.paginator.pageIndex, this.paginator.pageSize);
   }
 
-
+  handlePageChange(event) {
+      console.log(this.sort.active);
+      console.log(this.sort.direction);
+      this.page = event;
+      this.loadTodos();
+    }
+  
+    handlePageSizeChange(event) {
+      this.pageSize = event.target.value;
+      this.page = 0;
+      this.loadTodos();
+    }
+  
   // getRequestParams(searchTitle, page, pageSize) {
   //   // tslint:disable-next-line:prefer-const
   //   let params = {};

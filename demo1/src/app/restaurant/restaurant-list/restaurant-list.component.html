@@ -20,13 +20,13 @@
         </mat-form-field>
     </div>
     <div class="mat-elevation-z8">
-        <mat-table [dataSource]="listData" matSort>
+        <mat-table [dataSource]="listData" matSort matSortDirection="desc" matSortDisableClear>
             <ng-container matColumnDef="restaurantName">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Restaurant Name </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.restaurantName}} </mat-cell>
             </ng-container>
             <ng-container matColumnDef="address">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Address </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header > Address </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.address}} </mat-cell>
             </ng-container>
             <ng-container matColumnDef="phoneNo">
@@ -65,6 +65,6 @@
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
             <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
         </mat-table>
-        <mat-paginator [pageSizeOptions]="[3,6,9]" [pageSize]="3" showFirstLastButtons></mat-paginator>
+        <mat-paginator [pageSizeOptions]="[3,6,9]" [pageSize]="3" #paginator (page)="handlePageChange($event)" showFirstLastButtons></mat-paginator>
     </div>
 </kt-portlet>

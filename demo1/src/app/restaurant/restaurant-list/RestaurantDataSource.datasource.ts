@@ -5,7 +5,7 @@ import { Observable, BehaviorSubject, of } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
 import { RestaurantService } from '../_services/restaurant.service';
 // tslint:disable-next-line: max-line-length
-import { Restaurant, RestaurantResponse } from '/home/njadhav/Documents/zonionsRestaurant/zonionsResto/demo1/src/app/views/pages/restaurants/_helpers/restaurant';
+import { Restaurant, RestaurantResponse } from '/home/njadhav/Documents/OldPaginationCode/PaginationZonions/demo1/src/app/restaurant/_helpers/restaurant';
 
 export class RestaurantDataSource implements DataSource<Restaurant> {
 
@@ -26,7 +26,7 @@ export class RestaurantDataSource implements DataSource<Restaurant> {
         this.countSubject.complete();
     }
 
-    loadRestaurant(pageNumber = 0, pageSize = 10): any {
+    loadRestaurant(pageNumber = 0, pageSize = 3): any {
         this.loadingSubject.next(true);
         this.todoService.getAll({ page: pageNumber, size: pageSize })
             .pipe(

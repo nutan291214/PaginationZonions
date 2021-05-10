@@ -5,7 +5,7 @@ import { NavigationStart, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 // Translate
 // tslint:disable-next-line: max-line-length
-import { TranslationService } from '/home/njadhav/Documents/zonionsRestaurant/zonionsResto/demo1/src/app/core/_base/layout/services/translation.service';
+import { TranslationService } from '/home/njadhav/Documents/OldPaginationCode/PaginationZonions/demo1/src/app/core/_base/layout/services/translation.service';
 
 interface LanguageFlag {
 	lang: string;

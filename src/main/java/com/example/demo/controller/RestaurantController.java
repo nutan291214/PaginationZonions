@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -80,20 +81,35 @@ public class RestaurantController {
 		}
 
 	//To get All restaurant
-	@GetMapping("/restaurant/pagination")
+	//@GetMapping("/restaurant/pagination")
 	//@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	//@RateLimiter(name = RESTAURANT_SERVICE, fallbackMethod = "rateLimiterFallback")
-	public Page<RestaurantModel> getRestaurant(@RequestParam(name = "page", defaultValue = "0") int page,
-            @RequestParam(name = "size", defaultValue = "3") int size){
-		 PageRequest pageRequest = PageRequest.of(page, size);
-		 Page<RestaurantModel> pageResult = restaurantRepository.findAll(pageRequest);
-		 List<RestaurantModel> todos = new ArrayList<RestaurantModel>();
-		 for(RestaurantModel rest: pageResult)
-		 {
-			 todos.add(rest);
-		 }
-		 return new PageImpl<>(todos, pageRequest, pageResult.getTotalElements());
-	}
+//	public Page<RestaurantModel> getRestaurant(@RequestParam(name = "page", defaultValue = "0") int page,
+//            @RequestParam(name = "size", defaultValue = "3") int size){
+//		 PageRequest pageRequest = PageRequest.of(page, size);
+//		 Page<RestaurantModel> pageResult = restaurantRepository.findAll(pageRequest);
+//		 List<RestaurantModel> todos = new ArrayList<RestaurantModel>();
+//		 for(RestaurantModel rest: pageResult)
+//		 {
+//			 todos.add(rest);
+//		 }
+//		 return new PageImpl<>(todos, pageRequest, pageResult.getTotalElements());
+//	}
+		@GetMapping("/restaurant/pagination")
+		public Page<RestaurantModel> getRestaurant(@RequestParam("sortField") String sortField, @RequestParam("sortDir") String sortDir,@RequestParam(name = "page", defaultValue = "0") int page,
+	            @RequestParam(name = "size", defaultValue = "3") int size){
+
+			Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending()
+			        : Sort.by(sortField).descending();
+			 PageRequest pageRequest = PageRequest.of(page, size,sort);
+			 Page<RestaurantModel> pageResult = restaurantRepository.findAll(pageRequest);
+			 List<RestaurantModel> todos = new ArrayList<RestaurantModel>();
+			 for(RestaurantModel rest: pageResult)
+			 {
+				 todos.add(rest);
+			 }
+			 return new PageImpl<>(todos, pageRequest, pageResult.getTotalElements());
+		}
 	
 //	@GetMapping("/restaurant")
 //	  //@RateLimiter(name = RESTAURANT_SERVICE, fallbackMethod = "rateLimiterFallback")
